@@ -1,423 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wi-Fi Master Auto Peças</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 450px;
-            width: 100%;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        
-        .logo-img {
-            max-width: 320px;
-            width: 100%;
-            height: auto;
-            margin: 0 auto 15px;
-            display: block;
-        }
-        
-        .logo-text {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .logo-master {
-            font-size: 48px;
-            font-weight: 900;
-            color: #0d1b5e;
-            letter-spacing: 6px;
-            line-height: 1;
-            font-family: Impact, 'Arial Black', 'Helvetica Inserat', sans-serif;
-            text-transform: uppercase;
-        }
-        
-        .logo-autopecas {
-            font-size: 36px;
-            font-weight: 900;
-            color: #8b1a1a;
-            font-style: italic;
-            letter-spacing: 1px;
-            line-height: 1;
-            font-family: Impact, 'Arial Black', 'Helvetica Inserat', sans-serif;
-            text-transform: uppercase;
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 13px;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-        
-        .message {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .benefits {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 8px;
-            text-align: left;
-        }
-        
-        .benefits strong {
-            color: #ff6b6b;
-            font-size: 16px;
-        }
-        
-        .benefits ul {
-            margin: 10px 0 0 20px;
-            color: #666;
-        }
-        
-        .benefits li {
-            margin: 5px 0;
-        }
-        
-        .timer {
-            font-size: 48px;
-            font-weight: bold;
-            color: #667eea;
-            margin: 20px 0;
-            display: none;
-        }
-        
-        .timer.show {
-            display: block;
-        }
-        
-        .verification {
-            background: #e8f5e9;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            display: none;
-        }
-        
-        .verification.show {
-            display: block;
-        }
-        
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            display: none;
-        }
-        
-        .checkbox-container.show {
-            display: flex;
-        }
-        
-        .checkbox-container input[type="checkbox"] {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-        }
-        
-        .checkbox-container label {
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-            cursor: pointer;
-        }
-        
-        .instagram-btn {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 25px rgba(188, 24, 136, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-bottom: 20px;
-        }
-        
-        .instagram-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(188, 24, 136, 0.4);
-        }
-        
-        .instagram-btn:active {
-            transform: translateY(0);
-        }
-        
-        .instagram-icon {
-            width: 28px;
-            height: 28px;
-        }
-        
-        .connect-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
-            display: none;
-            margin-top: 10px;
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .connect-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
-        }
-        
-        .connect-btn.show {
-            display: inline-block;
-        }
-        
-        .connect-btn.enabled {
-            opacity: 1;
-            cursor: pointer;
-        }
-        
-        .footer {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 2px solid #f0f0f0;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .contact-item {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .contact-item svg {
-            width: 18px;
-            height: 18px;
-            fill: #667eea;
-        }
-        
-        .whatsapp {
-            color: #25D366;
-            font-weight: bold;
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 20px;
-            }
-            
-            .logo-master {
-                font-size: 36px;
-                letter-spacing: 4px;
-            }
-            
-            .logo-autopecas {
-                font-size: 28px;
-            }
-            
-            .message {
-                font-size: 16px;
-            }
-            
-            .instagram-btn, .connect-btn {
-                padding: 15px 30px;
-                font-size: 16px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Libera��o Wi-Fi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+        background: #0a0a0a;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 30px;
+    }
+    button {
+        background: #25D366;
+        border: none;
+        padding: 20px;
+        font-size: 22px;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 90%;
+        max-width: 300px;
+        margin-top: 40px;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <img src="logo.png" alt="Master Auto Peças" class="logo-img" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='flex';">
-        <div class="logo-text">
-            <div class="logo-master">MASTER</div>
-            <div class="logo-autopecas">AUTO PEÇAS</div>
-        </div>
-        <div class="subtitle">VANS - AUTOMÓVEIS - UTILITÁRIOS</div>
-        
-        <div class="message">
-            Para autenticar e obter acesso à internet, <strong>siga nosso Instagram</strong>
-        </div>
-        
-        <div class="benefits">
-            <strong>🎁 Benefícios exclusivos para seguidores:</strong>
-            <ul>
-                <li>✓ Promoções e descontos especiais</li>
-                <li>✓ Fique atento! Sempre temos promoções no Instagram</li>
-                <li>✓ Novidades em peças automotivas</li>
-            </ul>
-        </div>
-        
-        <button class="instagram-btn" id="instagramBtn" onclick="openInstagram()">
-            <svg class="instagram-icon" viewBox="0 0 24 24" fill="white">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            Seguir @masterapbrumado
-        </button>
-        
-        <div class="timer" id="timer"></div>
-        
-        <div class="verification" id="verification">
-            <p style="margin: 0; color: #2e7d32; font-weight: bold;">⏳ Aguardando confirmação...</p>
-            <p style="margin: 5px 0 0 0; font-size: 14px; color: #666;">Siga nosso Instagram para continuar</p>
-        </div>
-        
-        <div class="checkbox-container" id="checkboxContainer">
-            <input type="checkbox" id="confirmCheck" onchange="enableConnectButton()">
-            <label for="confirmCheck">✓ Confirmei que já segui o Instagram</label>
-        </div>
-        
-        <button class="connect-btn" id="connectBtn" onclick="connectWifi()">
-            ✓ Conectar ao Wi-Fi
-        </button>
-        
-        <div class="footer">
-            <div class="contact-item whatsapp">
-                <svg viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-                WhatsApp: (77) 99991-8622
-            </div>
-            <div class="contact-item">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-                </svg>
-                (77) 98841-9405
-            </div>
-            <div class="contact-item">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                </svg>
-                Av. Centenário, 567, Novo Brumado, Brumado-BA
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        let countdownValue = 20;
-        let countdownInterval;
-        
-        function openInstagram() {
-            // URL do Instagram
-            const username = 'masterapbrumado';
-            const webUrl = `https://www.instagram.com/${username}/`;
-            const appUrl = `instagram://user?username=${username}`;
-            
-            // Detecta se está no celular
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // No celular: tenta abrir o app primeiro
-                window.location.href = appUrl;
-                
-                // Se não abrir o app em 1.5 segundos, abre no navegador
-                setTimeout(function() {
-                    window.open(webUrl, '_blank');
-                }, 1500);
-            } else {
-                // No computador: abre direto no navegador
-                window.open(webUrl, '_blank');
-            }
-            
-            // Esconde o botão do Instagram
-            document.getElementById('instagramBtn').style.display = 'none';
-            
-            // Mostra mensagem de verificação
-            document.getElementById('verification').classList.add('show');
-            
-            // Inicia cronômetro após 2 segundos
-            setTimeout(function() {
-                startCountdown();
-            }, 2000);
-        }
-        
-        function startCountdown() {
-            // Esconde verificação e mostra timer
-            document.getElementById('verification').classList.remove('show');
-            document.getElementById('timer').classList.add('show');
-            
-            countdownInterval = setInterval(function() {
-                document.getElementById('timer').textContent = countdownValue;
-                countdownValue--;
-                
-                if (countdownValue < 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById('timer').classList.remove('show');
-                    // Mostra checkbox
-                    document.getElementById('checkboxContainer').classList.add('show');
-                    // Mostra botão conectar (desabilitado)
-                    document.getElementById('connectBtn').classList.add('show');
-                }
-            }, 1000);
-        }
-        
-        function enableConnectButton() {
-            const checkbox = document.getElementById('confirmCheck');
-            const button = document.getElementById('connectBtn');
-            
-            if (checkbox.checked) {
-                button.classList.add('enabled');
-                button.style.cursor = 'pointer';
-            } else {
-                button.classList.remove('enabled');
-                button.style.cursor = 'not-allowed';
-            }
-        }
-        
-        function connectWifi() {
-            const checkbox = document.getElementById('confirmCheck');
-            
-            if (!checkbox.checked) {
-                alert('⚠️ Por favor, confirme que você seguiu nosso Instagram!');
-                return;
-            }
-            
-            // Aqui você pode adicionar a lógica de autenticação do captive portal
-            alert('✅ Conectando ao Wi-Fi... Obrigado por seguir a Master Auto Peças!');
-            // window.location.href = 'success.html'; // ou a URL de sucesso do seu captive portal
-        }
-    </script>
+
+<h2>Bem-vindo ao Wi-Fi Master Auto Pe�as</h2>
+<p>Clique abaixo para liberar seu acesso � internet.</p>
+
+<button onclick="autorizar()">Liberar Wi-Fi</button>
+
+<script>
+// PAR�METROS DO UNIFI (o AP envia isso automaticamente)
+const params = new URLSearchParams(window.location.search);
+const ap = params.get("ap");
+const id = params.get("id");
+const ssid = params.get("ssid");
+const url = params.get("url");
+const mac = params.get("mac");
+
+// ENDERE�O DO CONTROLADOR
+const controlador = "http://192.168.3.38:8080";
+
+// LINK FINAL
+const redirectFinal = "https://juniorlisboarocha.github.io/instamaster/";
+
+function autorizar() {
+
+    if (!id || !mac) {
+        alert("Erro: ID ou MAC n�o recebidos do UniFi.");
+        return;
+    }
+
+    // URL DE AUTORIZA��O DO UNIFI
+    const liberar = controlador + "/guest/s/default/?mac=" + mac + "&id=" + id;
+
+    // Faz a autoriza��o e redireciona
+    fetch(liberar, { method: "GET" })
+        .then(() => {
+            window.location.href = redirectFinal;
+        })
+        .catch(() => {
+            window.location.href = redirectFinal;
+        });
+}
+</script>
+
 </body>
 </html>
